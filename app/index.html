@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="keywords" content="阴阳师,悬赏,快速完成"/>
+    <meta name="description" content="协助快速完成阴阳师悬赏任务"/>
+</head>
+
+<body>
+
+<h1>
+    阴阳师悬赏速通助手
+</h1>
+
+<div id="app" class="container-fluid app">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="#bogey">妖怪</a></li>
+        <li role="presentation"><a href="#setting">设置</a></li>
+        <li role="presentation"><a href="#res">方案</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" id="bogey">
+            <div v-if="Object.keys(bogeys).length===0" class="loading">
+                正在载入妖怪数据......
+            </div>
+            <div v-for="(list,type) in bogeys">
+                <h2 class="type">{{type}}</h2>
+                <div class="row-container" v-for="one in list">
+                    <h4>{{one}}:{{bogeyKill[one]}}</h4>
+                    <input type="range" min="0" step="1" max="15" v-model="bogeyKill[one]" class="one-row">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="setting">
+            <h2 class="type">剧情章数限制</h2>
+            <div class="row-container">
+                <h4>{{settings['levelLimit']}}章</h4>
+                <input type="range" min="1" step="1" max="28" v-model="settings['levelLimit']" class="one-row">
+            </div>
+            <h2 class="type">御魂/秘闻层数限制</h2>
+            <div class="row-container" v-for="(value,name) in settings['mwyhLimit']">
+                <h4>{{name}}:{{value}}</h4>
+                <input type="range" min="1" step="1" max="10" v-model="settings['mwyhLimit'][name]" class="one-row">
+            </div>
+            <button type="button" class="btn btn-success bottom-button" @click="saveSettings">保存设置</button>
+        </div>
+        <div class="tab-pane" id="res">
+
+            <div v-if="Object.keys(killObject).length>0" class="res">
+                <h3>击杀目标</h3>
+                <div v-for="(times,name) in killObject">
+                    {{name}}:{{times}}个<br>
+                </div>
+            </div>
+
+            <div v-if="Object.keys(res).length>0" class="res">
+                <h3>击杀方案</h3>
+                <div v-for="(times,name) in res">
+                    {{name}}:{{times}}次<br>
+                </div>
+                <button type="button" class="btn btn-danger bottom-button" @click="clearChoose">重置选择</button>
+            </div>
+            <div v-else  class="loading">{{resString}}</div>
+        </div>
+        <div class="submit">
+            <button type="button" class="btn btn-success" @click="getRes">显示方案</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
