@@ -5,7 +5,7 @@ html {
 }
 
 body {
-
+  font-family: "Microsoft YaHei";
 }
 
 #app {
@@ -19,7 +19,7 @@ h1 {
   padding: 10px;
 }
 
-h1, h2, h4 {
+h1, h2 {
   font-weight: bold !important;
 }
 
@@ -102,14 +102,14 @@ input {
   left: 45%;
 }
 
-.loading{
+.loading {
   font-size: 1.5em;
   margin-top: 20px;
 }
 
 @media screen and (min-width: 300px) and (max-width: 480px) {
   h1 {
-    font-size: 1.6em !important;
+    font-size: 2em !important;
   }
   h2 {
     font-size: 1.4em !important;

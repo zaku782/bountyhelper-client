@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title></title>
-    <meta name="keywords" content="阴阳师,悬赏,快速完成"/>
-    <meta name="description" content="协助快速完成阴阳师悬赏任务"/>
+    <meta name="keywords" content="阴阳师,悬赏封印,悬赏,封印"/>
+    <meta name="description" content="帮助阴阳师玩家快速完成悬赏封印任务"/>
 </head>
 
 <body>
 
 <h1>
-    阴阳师悬赏速通助手
+    阴阳师悬赏封印速通助手
 </h1>
 
 <div id="app" class="container-fluid app">
-    <ul class="nav nav-pills">
-        <li role="presentation"><a href="#bogey">妖怪</a></li>
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="#bogey">妖怪选择</a></li>
         <li role="presentation"><a href="#setting">设置</a></li>
         <li role="presentation"><a href="#res">方案</a></li>
+        <li role="presentation"><a href="#about">关于</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" id="bogey">
@@ -27,7 +28,7 @@
                 正在载入妖怪数据......
             </div>
             <div v-for="(list,type) in bogeys">
-                <h2 class="type">{{type}}</h2>
+                <h3 class="type">{{type}}</h3>
                 <div class="row-container" v-for="one in list">
                     <h4>{{one}}:{{bogeyKill[one]}}</h4>
                     <input type="range" min="0" step="1" max="15" v-model="bogeyKill[one]" class="one-row">
@@ -35,12 +36,12 @@
             </div>
         </div>
         <div class="tab-pane" id="setting">
-            <h2 class="type">剧情章数限制</h2>
+            <h3 class="type">剧情章数限制</h3>
             <div class="row-container">
                 <h4>{{settings['levelLimit']}}章</h4>
                 <input type="range" min="1" step="1" max="28" v-model="settings['levelLimit']" class="one-row">
             </div>
-            <h2 class="type">御魂/秘闻层数限制</h2>
+            <h3 class="type">御魂/秘闻层数限制</h3>
             <div class="row-container" v-for="(value,name) in settings['mwyhLimit']">
                 <h4>{{name}}:{{value}}</h4>
                 <input type="range" min="1" step="1" max="10" v-model="settings['mwyhLimit'][name]" class="one-row">
@@ -48,7 +49,6 @@
             <button type="button" class="btn btn-success bottom-button" @click="saveSettings">保存设置</button>
         </div>
         <div class="tab-pane" id="res">
-
             <div v-if="Object.keys(killObject).length>0" class="res">
                 <h3>击杀目标</h3>
                 <div v-for="(times,name) in killObject">
@@ -63,7 +63,11 @@
                 </div>
                 <button type="button" class="btn btn-danger bottom-button" @click="clearChoose">重置选择</button>
             </div>
-            <div v-else  class="loading">{{resString}}</div>
+            <div v-else class="loading">{{resString}}</div>
+        </div>
+        <div class="tab-pane" id="about">
+            本工具提供一键查询击杀方案的功能.由于基础数据来源于网络搜集,所以存在方案并非最优的可能.
+            若有相关建议或BUG反馈,可提交至zhouh08aws2@163.com.
         </div>
         <div class="submit">
             <button type="button" class="btn btn-success" @click="getRes">显示方案</button>
