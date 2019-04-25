@@ -28,9 +28,5 @@ module.exports = merge(common, {
     plugins: [
         new CleanWebpackPlugin(['dist']), //build前清空dist目录
         new webpack.HashedModuleIdsPlugin(), //防止因为module应为解析顺序变化导致hash id变化
-        /*new webpack.optimize.AggressiveSplittingPlugin({
-            minSize: 30000,
-            maxSize: 50000
-        }),//bundle拆分成更小的chunk*/
     ]
 });
