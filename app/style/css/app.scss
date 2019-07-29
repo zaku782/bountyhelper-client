@@ -6,7 +6,7 @@ html {
 
 body {
   font-family: "Microsoft YaHei";
-  background-color:#FFFFE0 !important;
+  background-color: #FFFFE0 !important;
 }
 
 #app {
@@ -20,12 +20,9 @@ h1 {
   padding: 10px;
 }
 
-h1, h2 {
-  font-weight: bold !important;
-}
-
 h4 {
   display: inline;
+  text-align: left;
 }
 
 input {
@@ -83,11 +80,7 @@ input {
 .submit {
   position: fixed;
   right: 10px;
-  top: 200px;
-}
-
-.res {
-  font-weight: bold;
+  top: 45%;
 }
 
 .bottom-button {
@@ -106,6 +99,21 @@ input {
 .loading {
   font-size: 1.5em;
   margin-top: 20px;
+}
+
+.about {
+  margin: 15px;
+  border: 1px solid #FFC125;
+  padding: 10px;
+  background-color: white;
+}
+
+a {
+  font-weight: 900;
+}
+
+.btn {
+  font-weight: 900 !important;
 }
 
 @media screen and (min-width: 300px) and (max-width: 480px) {

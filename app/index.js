@@ -26,12 +26,13 @@ new Vue({
                     "小鹿男": 10,
                     "姑获鸟": 10,
                     "大天狗": 10,
-                    "荒川之主": 10,
+                    "荒川": 10,
                     "雨女": 10,
                     "河童": 10,
                     "妖刀": 10,
                     "红叶": 10,
                     "山兔": 10,
+                    "金鱼姬": 10
                 },
                 levelLimit: 28
             },
@@ -43,8 +44,14 @@ new Vue({
     mounted: function () {
 
         let localSave = localStorage["settings"];
+
         if (localSave) {
-            this.settings = JSON.parse(localSave);
+            for (name in this.settings.mwyhLimit) {
+                this.$set(this.settings.mwyhLimit, name,
+                    JSON.parse(localSave)['mwyhLimit'][name] == null ?
+                        this.settings.mwyhLimit[name] :
+                        JSON.parse(localSave)['mwyhLimit'][name]);
+            }
         }
 
         let bogeys = localStorage["bogeys"];
@@ -113,7 +120,7 @@ new Vue({
             $("a[href='#bogey']").trigger('click');
         }, saveSettings: function () {
             localStorage.setItem("settings", JSON.stringify(this.settings));
-            Message.success('保存成功')
+            Message.success('保存成功');
         }, initKill: function (res) {
             for (let bogeyAlpha in res) {
                 let bogeyNames = res[bogeyAlpha];
