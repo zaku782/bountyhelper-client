@@ -55,14 +55,17 @@ new Vue({
         }
 
         let bogeys = localStorage["bogeys"];
-        if (bogeys) {
+
+        if (bogeys && 'undefined' !== bogeys) {
             this.bogeys = JSON.parse(bogeys);
             this.initKill(this.bogeys);
         } else {
             Server.bogeys().then((res) => {
-                this.bogeys = res;
-                this.initKill(this.bogeys);
-                localStorage.setItem("bogeys", JSON.stringify(this.bogeys));
+                if(res){
+                    this.bogeys = res;
+                    this.initKill(this.bogeys);
+                    localStorage.setItem("bogeys", JSON.stringify(this.bogeys));
+                }
             });
         }
 
@@ -81,7 +84,6 @@ new Vue({
     },
     methods: {
         getRes: function () {
-
             let kill = {};
 
             for (name in this.bogeyKill) {
@@ -118,10 +120,12 @@ new Vue({
             this.killObject = {};
             this.resString = "目前没有可用方案";
             $("a[href='#bogey']").trigger('click');
-        }, saveSettings: function () {
+        },
+        saveSettings: function () {
             localStorage.setItem("settings", JSON.stringify(this.settings));
             Message.success('保存成功');
-        }, initKill: function (res) {
+        },
+        initKill: function (res) {
             for (let bogeyAlpha in res) {
                 let bogeyNames = res[bogeyAlpha];
                 bogeyNames.forEach(name => {
